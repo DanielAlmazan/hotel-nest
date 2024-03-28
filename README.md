@@ -1,3 +1,64 @@
+[MiguelColl]: https://github.com/MiguelColl
+[LtVish]: https://github.com/LtVish
+[DanielAlmazan]: https://github.com/DanielAlmazan
+![Nest hotel logo](assets/hotel_nest-logo.svg)
+
+# HOTEL NEST
+
+## Cleaning services <a href="https://github.com/MiguelColl"><img src="https://avatars.githubusercontent.com/u/114687157?v=4" style="height: 30px; transform: translateY(7px); border-radius: 5px"></a>
+Responsible:
+[Miguel Collado][MiguelColl]
+
+### Cleaning routes
+#### GET
+> [!CAUTION]  
+> Not implemented  
+> '/limpieza/:id'
+
+> [!CAUTION]  
+> Not implemented  
+> '/limpieza/limpia/:id'
+
+> [!CAUTION]  
+> Not implemented  
+> '/limpieza/limpias'
+
+#### POST
+> [!CAUTION]  
+> Not implemented  
+> '/limpieza'
+
+Request example:
+```json5
+{
+  "numero": 1, // number
+  "tipo": "individual", // enum: string
+  "precio": 1, // number
+  "descripcion": "Bastante amplia, para ser individual.", // string
+  "imagen": "1711588324_habitacion1.png", // Optional {{timestamp}}_{{filename}}
+  "ultimaLimpieza": "'2024-02-22T10:28:32.980Z" // Default Date.now
+}
+```
+
+#### PUT
+> [!CAUTION]  
+> Not implemented  
+> '/limpieza/:id'
+
+## Authentication service <a href="https://github.com/LtVish"><img src="https://avatars.githubusercontent.com/u/119342012?v=4"  style="height: 40px; transform: translateY(7px); border-radius: 7px"></a>
+Responsible: 
+[Aitor Moreno Iborra][LtVish]
+
+## Testing <a href="https://github.com/DanielAlmazan"><img src="https://avatars.githubusercontent.com/u/114589538?v=4" style="height: 40px; transform: translateY(7px); border-radius: 5px"></a>
+Responsible:
+[Daniel Enrique Almazán Sellés][DanielAlmazan]
+
+> [!CAUTION]  
+> Not implemented
+```bash
+$ node test/axiosTests.ts
+```
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
