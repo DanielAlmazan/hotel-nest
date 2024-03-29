@@ -31,12 +31,65 @@ Responsible:
 Request example:
 ```json5
 {
-  "numero": 1, // number
-  "tipo": "individual", // enum: string
-  "precio": 1, // number
-  "descripcion": "Bastante amplia, para ser individual.", // string
-  "imagen": "1711588324_habitacion1.png", // Optional {{timestamp}}_{{filename}}
-  "ultimaLimpieza": "'2024-02-22T10:28:32.980Z" // Default Date.now
+  "_id": "20011a1a1a1a1a1a1a1a1a1a", // string(uuid) (optional)
+  "habitacion": "1a1a1a1a1a1a1a1a1a1a1a1a", // string(uuid)
+  "fecha": "2023-09-18T10:59:12Z", // Date (default Date.now)
+  "observaciones": 'Dejan toallas para cambiar' // string (optional)
+}
+```
+
+Response:
+
+```json5
+{
+  "_id": "20011a1a1a1a1a1a1a1a1a1a",
+  "habitacion": "1a1a1a1a1a1a1a1a1a1a1a1a",
+  "fecha": "2023-09-18T10:59:12Z",
+  "observaciones": 'Dejan toallas para cambiar',
+  "__v": 0
+}
+```
+
+Request
+
+```json5
+{
+  "habitacion": "1a1a1a1a1a1a1a1a1a1a1a1a",
+  // string(uuid)
+}
+```
+
+Response:
+
+```json5
+{
+  "_id": "65e1ad208e74dc5df6612f4e",
+  "habitacion": "1a1a1a1a1a1a1a1a1a1a1a1a",
+  "fecha": "2023-09-18T10:59:12Z",
+  "observaciones": ""
+}
+```
+
+(Bad) Request:
+
+```json5
+{
+  "habitacion": "1a1a1a1a1a1a1a",
+  // string(not uuid)
+  "fecha": "2023-09-18T10:59:12Z",
+  // Date
+  "observaciones": 'Dejan toallas para cambiar'
+  // string
+}
+```
+
+Response:
+
+```json5
+// Status 400
+{
+  "ok": false,
+  "error": "Error al obtener limpiezas"
 }
 ```
 
