@@ -24,7 +24,7 @@ Responsible:
 
 Response example
 
-```json5
+```json
 [
   {
     "_id": "20012b2b2b2b2b2b2b2b2b2b",
@@ -35,7 +35,7 @@ Response example
     "_id": "20011a1a1a1a1a1a1a1a1a1a",
     "habitacion": "1a1a1a1a1a1a1a1a1a1a1a1a",
     "fecha": "2023-09-18T10:59:12Z",
-    "observaciones": 'Dejan toallas para cambiar'
+    "observaciones": "Dejan toallas para cambiar"
   }
 ]
 ```
@@ -61,64 +61,60 @@ Response example
 
 Request:
 
-```json5
+```json
 {
-  "_id": "20011a1a1a1a1a1a1a1a1a1a", // string(uuid) (optional)
-  "habitacion": "1a1a1a1a1a1a1a1a1a1a1a1a", // string(uuid)
-  "fecha": "2023-09-18T10:59:12Z", // Date (default Date.now)
-  "observaciones": 'Dejan toallas para cambiar' // string (optional)
+  "_id": "20011a1a1a1a1a1a1a1a1a1a",
+  "habitacion": "1a1a1a1a1a1a1a1a1a1a1a1a",
+  "fecha": "2023-09-18T10:59:12Z",
+  "observaciones": "Dejan toallas para cambiar"
 }
 ```
 
 Response:
 
-```json5
+```json
 {
   "_id": "20011a1a1a1a1a1a1a1a1a1a",
   "habitacion": "1a1a1a1a1a1a1a1a1a1a1a1a",
   "fecha": "2023-09-18T10:59:12Z",
-  "observaciones": 'Dejan toallas para cambiar',
+  "observaciones": "Dejan toallas para cambiar",
   "__v": 0
 }
 ```
 
 Request
 
-```json5
+```json
 {
   "habitacion": "1a1a1a1a1a1a1a1a1a1a1a1a",
-  // string(uuid)
 }
 ```
 
 Response:
 
-```json5
+```json
 {
   "_id": "65e1ad208e74dc5df6612f4e",
   "habitacion": "1a1a1a1a1a1a1a1a1a1a1a1a",
   "fecha": "2023-09-18T10:59:12Z",
-  "observaciones": ""
+  "observaciones": "",
+  "__v": 0
 }
 ```
 
 (Bad) Request:
 
-```json5
+```json
 {
   "habitacion": "1a1a1a1a1a1a1a",
-  // string(not uuid)
   "fecha": "2023-09-18T10:59:12Z",
-  // Date
-  "observaciones": 'Dejan toallas para cambiar'
-  // string
+  "observaciones": "Dejan toallas para cambiar"
 }
 ```
 
 Response:
-
-```json5
-// Status 400
+(status 400)
+```json
 {
   "ok": false,
   "error": "Error al obtener limpiezas"
@@ -138,39 +134,38 @@ Response:
 
 Request:
 
-```json5
+```json
 {
-  "_id": "20011a1a1a1a1a1a1a1a1a", // cleaning id - string(uuid)
-  "fecha": "2023-09-18T10:59:12Z", // Date (optional)
-  "observaciones": 'He cambiado las toallas.' // string (optional)
+  "_id": "20011a1a1a1a1a1a1a1a1a",
+  "fecha": "2023-09-18T10:59:12Z",
+  "observaciones": "He cambiado las toallas."
 }
 ```
 
 Response:
 
-```json5
+```json
 {
   "_id": "20011a1a1a1a1a1a1a1a1a1a",
   "habitacion": "1a1a1a1a1a1a1a1a1a1a1a",
   "fecha": "2023-09-18T10:59:12Z",
-  "observaciones": 'He cambiado las toallas.',
+  "observaciones": "He cambiado las toallas.",
   "__v": 0
 }
 ```
 
 (Bad) Request:
 
-```json5
+```json
 {
-  "fecha": "Miércoles", // not Date
-  "observaciones": 'Dejan toallas para cambiar'// string
+  "fecha": "Miércoles",
+  "observaciones": "Dejan toallas para cambiar"
 }
 ```
 
 Response:
-
-```json5
-// Status 400
+(Status 400)
+```json
 {
   "ok": false,
   "error": ""
@@ -178,18 +173,17 @@ Response:
 ```
 
 Request
-```json5
+```json
 {
-  "_id": "20011a1a1a1e1e1a1b1b1b", // cleaning id - string(uuid)
-  "fecha": "2024-09-18T10:59:12Z", // Date (optional)
-  "observaciones": 'He cambiado las toallas.' // string (optional)
+  "_id": "20011a1a1a1e1e1a1b1b1b",
+  "fecha": "2024-09-18T10:59:12Z",
+  "observaciones": "He cambiado las toallas."
 }
 ```
 
 Response:
-
-```json5
-// Status 404
+(status 404)
+```json
 {
   "ok": false,
   "error": "No se encontró la limpieza"
