@@ -1,0 +1,8 @@
+PARTE 1:
+    limpieza.entity:
+        -> Se debe incluir el la propiedad ref dentro del decorador @Prop? o es suficiente con definirlo asi?
+        -> No sirve poner un default para la fecha?
+    
+    limpieza.service:
+        -> Es necesario un try-catch para comprobar si el id que nos pasan el la peticion no existe? ej linea 34
+        -> Esta bien utilizar new Date(Date.now()) ?? Asi obtengo la fecha en el mismo formato que ultimaLimpieza. linea 70
