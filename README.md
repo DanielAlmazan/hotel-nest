@@ -29,7 +29,7 @@ Response example
   {
     "_id": "20012b2b2b2b2b2b2b2b2b2b",
     "habitacion": "2b2b2b2b2b2b2b2b2b2b2b2b",
-    "fecha": "2023-09-20T11:24:00Z",
+    "fecha": "2023-09-20T11:24:00Z"
   },
   {
     "_id": "20011a1a1a1a1a1a1a1a1a1a",
@@ -86,7 +86,7 @@ Request
 
 ```json
 {
-  "habitacion": "1a1a1a1a1a1a1a1a1a1a1a1a",
+  "habitacion": "1a1a1a1a1a1a1a1a1a1a1a1a"
 }
 ```
 
@@ -194,6 +194,14 @@ Response:
 
 Responsible:
 [Aitor Moreno Iborra][LtVish]
+
+### To implement
+
+>·Users module  
+>·Users entity  
+>·Auth module  
+>·JWT Configuration  
+>·Protect routes
 
 ## Testing <a href="https://github.com/DanielAlmazan"><img src="https://avatars.githubusercontent.com/u/114589538?v=4" style="height: 40px; transform: translateY(7px); border-radius: 5px"></a>
 
