@@ -7,16 +7,19 @@ import {
   Param,
   ValidationPipe,
   UsePipes,
+  UseGuards,
 } from '@nestjs/common';
 import { LimpiezaService } from './limpieza.service';
 import { CreateLimpiezaDto } from './dto/create-limpieza.dto';
 import { UpdateLimpiezaDto } from './dto/update-limpieza.dto';
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('limpieza')
 @UsePipes(ValidationPipe)
 export class LimpiezaController {
   constructor(private readonly limpiezaService: LimpiezaService) {}
 
+  @UseGuards(AuthGuard)
   @Post()
   create(@Body() createLimpiezaDto: CreateLimpiezaDto) {
     return this.limpiezaService.create(createLimpiezaDto);
@@ -32,6 +35,7 @@ export class LimpiezaController {
     return this.limpiezaService.findAll(id);
   }
 
+  @UseGuards(AuthGuard)
   @Patch(':id')
   update(
     @Param('id') id: string,
