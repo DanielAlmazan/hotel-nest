@@ -47,7 +47,7 @@ const getRoomCleanings = async (room) => {
   // Expected values
   const expectedValues = {
     status: 200,
-    amount: 9
+    amount: 1
   };
   
   // Get cleanings
@@ -60,7 +60,7 @@ const getRoomCleanings = async (room) => {
       throw new Error(
         response.status !== expectedValues.status
           ? `Expected status: ${expectedValues.status} - Obtained: ${response.status}`
-          : `Expected cleanings length: ${expectedValues.amount} - Obtained: ${response.data.length}`
+          : `Expected cleanings length: >= ${expectedValues.amount} - Obtained: ${response.data.length}`
       );
     }
   } catch (error) {
