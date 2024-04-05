@@ -14,13 +14,14 @@ Responsible:
 
 ### Cleaning routes
 
+> [!CAUTION]  
+> The requests might not well described. In some services, instead of using room id, we're using the whole room object.
+
 #### GET
 
-> [!CAUTION]  
-> Not implemented  
 > '/limpieza/:id'  
-> Gets the list of all cleanings for the room with the specified id, ordered by date in descending order. If there are
-> no cleanings, an empty array will be returned.
+> Gets the list of all cleanings for the room with the specified id, ordered by date in descending order.
+> If there are no cleanings, an empty array will be returned.
 
 Response example
 
@@ -29,7 +30,8 @@ Response example
   {
     "_id": "20012b2b2b2b2b2b2b2b2b2b",
     "habitacion": "2b2b2b2b2b2b2b2b2b2b2b2b",
-    "fecha": "2023-09-20T11:24:00Z"
+    "fecha": "2023-09-20T11:24:00Z",
+    "observaciones": ""
   },
   {
     "_id": "20011a1a1a1a1a1a1a1a1a1a",
@@ -40,19 +42,47 @@ Response example
 ]
 ```
 
-> [!CAUTION]  
-> Not implemented  
 > '/limpieza/limpia/:id'
 
+Response example
+```json
+{
+  "ok": false
+}
+```
 
-> [!CAUTION]  
-> Not implemented  
 > '/limpieza/limpias'
 
+Response example
+```json
+[
+  {
+    "_id": "2b2b2b2b2b2b2b2b2b2b2b2b",
+    "numero": 2,
+    "tipo": "familiar",
+    "descripcion": "Habitación familiar, cama XL y literas, aseo con bañera",
+    "ultimaLimpieza": "2024-04-05T09:05:40.400Z",
+    "precio": 65.45,
+    "incidencias": [
+      {
+        "descripcion": "Descripción de prueba",
+        "_id": "65954723750cad27d2b508c0",
+        "inicio": "2024-01-03T11:38:11.113Z",
+        "fin": "2024-01-03T11:38:11.117Z"
+      },
+      {
+        "descripcion": "Uuuuuh",
+        "_id": "65d718ca1ab3b2d9e226c0a8",
+        "inicio": "2024-02-22T09:50:02.460Z",
+        "fin": "2024-04-04T10:40:22.898Z"
+      }
+    ],
+    "__v": 0
+  }
+]
+```
 #### POST
 
-> [!CAUTION]  
-> Not implemented  
 > '/limpieza'  
 > Inserts a new cleaning for a room. The inserted cleaning object will be returned if everything went well, or a Bad
 > Request (code 400) in case of an error.
@@ -82,8 +112,7 @@ Response:
 }
 ```
 
-Request
-
+(Bad) Request (missing date):
 ```json
 {
   "habitacion": "1a1a1a1a1a1a1a1a1a1a1a1a"
@@ -94,40 +123,40 @@ Response:
 
 ```json
 {
-  "_id": "65e1ad208e74dc5df6612f4e",
-  "habitacion": "1a1a1a1a1a1a1a1a1a1a1a1a",
-  "fecha": "2023-09-18T10:59:12Z",
-  "observaciones": "",
-  "__v": 0
+  "message": [
+    "fecha must be a valid ISO 8601 date string",
+    "La fecha es obligatoria"
+  ],
+  "error": "Bad Request",
+  "statusCode": 400
 }
 ```
 
-(Bad) Request:
-
+(Bad) Request (wrong room id):
 ```json
 {
-  "habitacion": "1a1a1a1a1a1a1a",
-  "fecha": "2023-09-18T10:59:12Z",
-  "observaciones": "Dejan toallas para cambiar"
+  "habitacion": "1a1a1a1a1a",
+  "fecha": "2023-09-18T10:59:12Z"
 }
 ```
 
 Response:
-(status 400)
 ```json
 {
-  "ok": false,
-  "error": "Error al obtener limpiezas"
+  "message": [
+    "El ID de la habitación no existe"
+  ],
+  "error": "Bad Request",
+  "statusCode": 400
 }
 ```
 
-#### PUT
+#### PATCH
 
-> [!CAUTION]  
-> Not implemented  
 > '/limpieza/:id'  
 > Modifies the data of a cleaning given its id (the cleaning's id). In the request body, it can receive both a new date
-> and new observations, and only the relevant fields will be updated.  
+> and new observations, and only the relevant fields will be updated.
+
 > Returns 404 if the cleaning does not exist, 400 if the request is incorrect, and 200 if everything went well.
 
 #### Examples
@@ -136,8 +165,6 @@ Request:
 
 ```json
 {
-  "_id": "20011a1a1a1a1a1a1a1a1a",
-  "fecha": "2023-09-18T10:59:12Z",
   "observaciones": "He cambiado las toallas."
 }
 ```
@@ -158,35 +185,36 @@ Response:
 
 ```json
 {
-  "fecha": "Miércoles",
-  "observaciones": "Dejan toallas para cambiar"
+  "fecha": "Miércoles"
 }
 ```
 
 Response:
-(Status 400)
+
 ```json
 {
-  "ok": false,
-  "error": ""
+  "message": [
+    "fecha must be a valid ISO 8601 date string"
+  ],
+  "error": "Bad Request",
+  "statusCode": 400
 }
 ```
 
-Request
+Request (non-existent cleaning):
+
 ```json
 {
-  "_id": "20011a1a1a1e1e1a1b1b1b",
-  "fecha": "2024-09-18T10:59:12Z",
   "observaciones": "He cambiado las toallas."
 }
 ```
 
 Response:
-(status 404)
 ```json
 {
-  "ok": false,
-  "error": "No se encontró la limpieza"
+  "message": "La limpieza buscada no existe",
+  "error": "Internal Server Error",
+  "statusCode": 500
 }
 ```
 
@@ -219,15 +247,15 @@ $ node test/axios/axiosTests.mjs
 > ⭕️ Implemented not passing  
 > ✅ Implemented and passing
 
-⭕️ Get every cleaning of a room  
-⭕️ Get if a room is clean or not  
-❌ Get every cleaned room today  
-❌ Correct login  
-❌ Incorrect login  
-❌ Insert a cleaning without correct login  
-❌ Insert a cleaning with correct login  
-❌ Modify a cleaning without correct login  
-❌ Modify a cleaning with correct login  
+✅️ Get every cleaning of a room  
+✅️ Get if a room is clean or not  
+✅ Get every cleaned room today  
+✅ Correct login  
+✅ Incorrect login  
+✅ Insert a cleaning without correct login  
+✅ Insert a cleaning with correct login  
+✅ Modify a cleaning without correct login  
+✅ Modify a cleaning with correct login  
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
