@@ -3,8 +3,11 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const apiHost = process.env.API_HOST || 'localhost';
+const apiPort = process.env.API_PORT || 3000;
+
 const axiosInstance = axios.create({
-  baseURL: `http://${process.env.API_HOST}:${process.env.API_PORT}`,
+  baseURL: `http://${apiHost}:${apiPort}`,
   headers: { 'Content-Type': 'application/json' }
 });
 

@@ -223,21 +223,58 @@ Response:
 Responsible:
 [Aitor Moreno Iborra][LtVish]
 
-### To implement
+### Authentication routes
 
->·Users module  
->·Users entity  
->·Auth module  
->·JWT Configuration  
->·Protect routes
+#### POST
+
+> '/login'  
+> Authenticates a user given its login and password.  
+> If the credentials are correct, a token will be returned, 
+> and if not, a 401 Unauthorized status code.
+
+#### Examples
+
+Request:
+
+```json
+{
+  "login": "admin",
+  "password": "realAdminPassword"
+}
+```
+
+Response:
+
+```json
+{
+  "ok": true,
+  "resultado": "token_itself"
+}
+```
+
+(Bad) Request:
+
+```json
+{
+  "login": "admin",
+  "password": "notRealAdminPassword"
+}
+```
+
+Response:
+
+```json
+{
+  "message": "Unauthorized",
+  "statusCode": 401
+}
+```
 
 ## Testing <a href="https://github.com/DanielAlmazan"><img src="https://avatars.githubusercontent.com/u/114589538?v=4" style="height: 40px; transform: translateY(7px); border-radius: 5px"></a>
 
 Responsible:
 [Daniel Enrique Almazán Sellés][DanielAlmazan]
 
-> [!CAUTION]  
-> Not implemented
 
 ```bash
 $ node test/axios/axiosTests.mjs
