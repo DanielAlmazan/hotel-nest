@@ -1,8 +1,13 @@
+<!-- Links references -->
 [MiguelColl]: https://github.com/MiguelColl
 
 [LtVish]: https://github.com/LtVish
 
 [DanielAlmazan]: https://github.com/DanielAlmazan
+
+
+<p style="text-align: center"><a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/badge/IES_San_Vicente-DAM--DAW-gree" alt="NPM Version" /></a></p>
+
 ![Nest hotel logo](assets/hotel_nest-logo.svg)
 
 # HOTEL NEST
@@ -294,7 +299,7 @@ $ node test/axios/axiosTests.mjs
 ✅ Modify a cleaning without correct login  
 ✅ Modify a cleaning with correct login  
 
-<p align="center">
+<p style="text-align: center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
@@ -302,8 +307,8 @@ $ node test/axios/axiosTests.mjs
 
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
+  <p style="text-align: center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p style="text-align: center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
