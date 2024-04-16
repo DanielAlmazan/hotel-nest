@@ -6,11 +6,14 @@
 [DanielAlmazan]: https://github.com/DanielAlmazan
 
 
-<p style="text-align: center"><a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/badge/IES_San_Vicente-DAM--DAW-gree" alt="NPM Version" /></a></p>
+<p align="center"><a href="https://iessanvicente.com/" target="_blank"><img src="https://img.shields.io/badge/IES_San_Vicente-DAM--DAW-gree" alt="DAM-DAW (Multiplatform Higher Degrees" /></a></p>
 
 ![Nest hotel logo](assets/hotel_nest-logo.svg)
 
 # HOTEL NEST
+
+> [!IMPORTANT]  
+> This project will eventually be complemented by other projects.
 
 ## Cleaning services <a href="https://github.com/MiguelColl"><img src="https://avatars.githubusercontent.com/u/114687157?v=4" style="height: 30px; transform: translateY(7px); border-radius: 5px"></a>
 
@@ -24,7 +27,7 @@ Responsible:
 
 #### GET
 
-> '/limpieza/:id'  
+###### '/limpieza/:id'  
 > Gets the list of all cleanings for the room with the specified id, ordered by date in descending order.
 > If there are no cleanings, an empty array will be returned.
 
@@ -47,7 +50,8 @@ Response example
 ]
 ```
 
-> '/limpieza/limpia/:id'
+###### '/limpieza/limpia/:id'
+> Gets the cleaning status of a room given its id.
 
 Response example
 ```json
@@ -56,7 +60,8 @@ Response example
 }
 ```
 
-> '/limpieza/limpias'
+###### '/limpieza/limpias'
+> Gets the list of all rooms that have been cleaned today.
 
 Response example
 ```json
@@ -88,7 +93,7 @@ Response example
 ```
 #### POST
 
-> '/limpieza'  
+###### '/limpieza'  
 > Inserts a new cleaning for a room. The inserted cleaning object will be returned if everything went well, or a Bad
 > Request (code 400) in case of an error.
 
@@ -158,7 +163,7 @@ Response:
 
 #### PATCH
 
-> '/limpieza/:id'  
+###### '/limpieza/:id'  
 > Modifies the data of a cleaning given its id (the cleaning's id). In the request body, it can receive both a new date
 > and new observations, and only the relevant fields will be updated.
 
@@ -232,7 +237,7 @@ Responsible:
 
 #### POST
 
-> '/login'  
+###### '/login'  
 > Authenticates a user given its login and password.  
 > If the credentials are correct, a token will be returned, 
 > and if not, a 401 Unauthorized status code.
@@ -299,7 +304,7 @@ $ node test/axios/axiosTests.mjs
 ✅ Modify a cleaning without correct login  
 ✅ Modify a cleaning with correct login  
 
-<p style="text-align: center">
+<p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
@@ -307,8 +312,8 @@ $ node test/axios/axiosTests.mjs
 
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p style="text-align: center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p style="text-align: center">
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
