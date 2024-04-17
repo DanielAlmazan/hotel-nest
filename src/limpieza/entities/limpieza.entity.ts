@@ -11,7 +11,6 @@ export class Limpieza extends Document {
   habitacion: Habitacion;
 
   @Prop({
-    required: true,
     default: Date.now,
   })
   fecha: Date;
