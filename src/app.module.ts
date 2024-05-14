@@ -10,14 +10,14 @@ import { config } from 'dotenv';
 config();
 
 //const dbHost = process.env.DB_HOST || 'localhost';
-const dbHost = process.env.DB_HOST || '127.0.0.1';
-const dbPort = process.env.DB_PORT || '27017';
-const devDbName = process.env.DEV_DB_NAME || 'hotel';
+//const dbHost = process.env.DB_HOST || '127.0.0.1';
+//const dbPort = process.env.DB_PORT || '27017';
+//const devDbName = process.env.DEV_DB_NAME || 'hotel';
 
 @Module({
   imports: [
     LimpiezaModule,
-    MongooseModule.forRoot(`mongodb://${dbHost}:${dbPort}/${devDbName}`),
+    MongooseModule.forRoot(`mongodb://hotelDB:27017/hotel`),
     UsuarioModule,
     AuthModule,
     UsuarioModule,
