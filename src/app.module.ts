@@ -17,7 +17,7 @@ config();
 @Module({
   imports: [
     LimpiezaModule,
-    MongooseModule.forRoot(`mongodb://hotelDB:27017/hotel`),
+    MongooseModule.forRoot('mongodb://hotelDB/hotel'),
     UsuarioModule,
     AuthModule,
     UsuarioModule,
