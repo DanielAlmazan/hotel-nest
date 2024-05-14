@@ -3,8 +3,11 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const apiHost = process.env.API_HOST || 'localhost';
+const apiPort = process.env.API_PORT || 3000;
+
 const axiosInstance = axios.create({
-  baseURL: `http://${process.env.API_HOST}:${process.env.API_PORT}`,
+  baseURL: `http://${apiHost}:${apiPort}`,
   headers: { 'Content-Type': 'application/json' }
 });
 
@@ -152,7 +155,7 @@ const incorrectLogin = async () => {
     console.log('ERROR - Login incorrecto: se esperaba un error pero la petición fue exitosa');
     return -1;
   } catch (error) {
-    if (error.response && error.response.status === 401) {
+    if (error.response && error.response.status === expectedValues.status) {
       console.log('OK - Login incorrecto');
     } else {
       console.log('ERROR - Login incorrecto: se produjo un error inesperado');
@@ -206,6 +209,7 @@ const insertCleaningNoLogin = async () => {
     } else {
       console.log('ERROR - Inserción de limpieza sin login: se produjo un error inesperado');
       console.log('      -', error.message);
+      return -1;
     }
   }
 };
@@ -236,6 +240,7 @@ const insertCleaning = async (token) => {
     if (error.response) {
       console.log('      -', error.response.data.message);
     }
+    return -1;
   }
 };
 
@@ -295,75 +300,41 @@ const updateCleaning = async (token, cleaning) => {
 };
 
 const executeTests = async () => {
-  // TODO: add tests
   const results = {
     succeededTests: 0,
     failedTests: 0
   };
-  
-  if (await insertCleaningNoLogin() === -1) {
-    results.failedTests++;
-  } else {
-    results.succeededTests++;
+  const checkSuccess = (result) => {
+    if (result === -1) {
+      results.failedTests++;
+    } else {
+      results.succeededTests++;
+    }
   }
   
-  if (await updateCleaningNoLogin() === -1) {
-    results.failedTests++;
-  } else {
-    results.succeededTests++;
-  }
+  checkSuccess(await insertCleaningNoLogin());
   
-  if (await incorrectLogin() === -1) {
-    results.failedTests++;
-  } else {
-    results.succeededTests++;
-  }
+  checkSuccess(await updateCleaningNoLogin());
+  
+  checkSuccess(await incorrectLogin());
   
   const token = await correctLogin();
-  if (token === -1) {
-    results.failedTests++;
-  } else {
-    results.succeededTests++;
-  }
+  checkSuccess(token);
   
   let cleaning = await insertCleaning(token);
-  if (cleaning === -1) {
-    results.failedTests++;
-  } else {
-    results.succeededTests++;
-  }
+  checkSuccess(cleaning);
   
   cleaning = await updateCleaning(token, cleaning);
-  if (cleaning === -1) {
-    results.failedTests++;
-  } else {
-    results.succeededTests++;
-  }
+  checkSuccess(cleaning);
   
   const cleanedRooms = await getCleanedRooms();
-  if (cleanedRooms === -1) {
-    results.failedTests++;
-  } else {
-    results.succeededTests++;
-  }
+  checkSuccess(cleanedRooms);
   
-  if (await getRoomCleanings(room1) === -1) {
-    results.failedTests++;
-  } else {
-    results.succeededTests++;
-  }
+  checkSuccess(await getRoomCleanings(room1));
   
-  if (await isRoomClean(room1, true) === -1) {
-    results.failedTests++;
-  } else {
-    results.succeededTests++;
-  }
+  checkSuccess(await isRoomClean(room1, true));
   
-  if (await isRoomClean(room2, false) === -1) {
-    results.failedTests++;
-  } else {
-    results.succeededTests++;
-  }
+  checkSuccess(await isRoomClean(room2, false));
   
   return results;
 };

@@ -1,11 +1,19 @@
+<!-- Links references -->
 [MiguelColl]: https://github.com/MiguelColl
 
 [LtVish]: https://github.com/LtVish
 
 [DanielAlmazan]: https://github.com/DanielAlmazan
+
+
+<p align="center"><a href="https://iessanvicente.com/" target="_blank"><img src="https://img.shields.io/badge/IES_San_Vicente-DAM--DAW-gree" alt="DAM-DAW (Multiplatform Higher Degrees" /></a></p>
+
 ![Nest hotel logo](assets/hotel_nest-logo.svg)
 
 # HOTEL NEST
+
+> [!IMPORTANT]  
+> This project will eventually be complemented by other projects.
 
 ## Cleaning services <a href="https://github.com/MiguelColl"><img src="https://avatars.githubusercontent.com/u/114687157?v=4" style="height: 30px; transform: translateY(7px); border-radius: 5px"></a>
 
@@ -19,7 +27,7 @@ Responsible:
 
 #### GET
 
-> '/limpieza/:id'  
+###### '/limpieza/:id'  
 > Gets the list of all cleanings for the room with the specified id, ordered by date in descending order.
 > If there are no cleanings, an empty array will be returned.
 
@@ -42,7 +50,8 @@ Response example
 ]
 ```
 
-> '/limpieza/limpia/:id'
+###### '/limpieza/limpia/:id'
+> Gets the cleaning status of a room given its id.
 
 Response example
 ```json
@@ -51,7 +60,8 @@ Response example
 }
 ```
 
-> '/limpieza/limpias'
+###### '/limpieza/limpias'
+> Gets the list of all rooms that have been cleaned today.
 
 Response example
 ```json
@@ -83,7 +93,7 @@ Response example
 ```
 #### POST
 
-> '/limpieza'  
+###### '/limpieza'  
 > Inserts a new cleaning for a room. The inserted cleaning object will be returned if everything went well, or a Bad
 > Request (code 400) in case of an error.
 
@@ -153,7 +163,7 @@ Response:
 
 #### PATCH
 
-> '/limpieza/:id'  
+###### '/limpieza/:id'  
 > Modifies the data of a cleaning given its id (the cleaning's id). In the request body, it can receive both a new date
 > and new observations, and only the relevant fields will be updated.
 
@@ -223,21 +233,58 @@ Response:
 Responsible:
 [Aitor Moreno Iborra][LtVish]
 
-### To implement
+### Authentication routes
 
->·Users module  
->·Users entity  
->·Auth module  
->·JWT Configuration  
->·Protect routes
+#### POST
+
+###### '/login'  
+> Authenticates a user given its login and password.  
+> If the credentials are correct, a token will be returned, 
+> and if not, a 401 Unauthorized status code.
+
+#### Examples
+
+Request:
+
+```json
+{
+  "login": "admin",
+  "password": "realAdminPassword"
+}
+```
+
+Response:
+
+```json
+{
+  "ok": true,
+  "resultado": "token_itself"
+}
+```
+
+(Bad) Request:
+
+```json
+{
+  "login": "admin",
+  "password": "notRealAdminPassword"
+}
+```
+
+Response:
+
+```json
+{
+  "message": "Unauthorized",
+  "statusCode": 401
+}
+```
 
 ## Testing <a href="https://github.com/DanielAlmazan"><img src="https://avatars.githubusercontent.com/u/114589538?v=4" style="height: 40px; transform: translateY(7px); border-radius: 5px"></a>
 
 Responsible:
 [Daniel Enrique Almazán Sellés][DanielAlmazan]
 
-> [!CAUTION]  
-> Not implemented
 
 ```bash
 $ node test/axios/axiosTests.mjs
