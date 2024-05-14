@@ -9,7 +9,8 @@ import { config } from 'dotenv';
 
 config();
 
-const dbHost = process.env.DB_HOST || 'localhost';
+//const dbHost = process.env.DB_HOST || 'localhost';
+const dbHost = process.env.DB_HOST || 'hotelDB';
 const dbPort = process.env.DB_PORT || '27017';
 const devDbName = process.env.DEV_DB_NAME || 'hotel';
 
