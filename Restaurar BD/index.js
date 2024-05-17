@@ -3,7 +3,7 @@ const Habitacion = require(__dirname + '/models/habitacion');
 const Limpieza = require(__dirname + '/models/limpieza');
 const Usuario = require(__dirname + '/models/usuario');
 
-mongoose.connect('mongodb://hotelDB/hotel');
+mongoose.connect('mongodb://127.0.0.1:27017/hotel');
 
 const borrarDatos = async () => {
   console.log('Borrando colección de habitaciones');
