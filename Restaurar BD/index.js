@@ -7,16 +7,7 @@ const Limpieza = require(__dirname + '/models/limpieza');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const Usuario = require(__dirname + '/models/usuario');
 
-mongoose.connect('mongodb://hotelDB:27017/hotel');
-
-const borrarDatos = async () => {
-  console.log('Borrando colección de habitaciones');
-  await mongoose.connection.collections['habitaciones'].drop();
-  console.log('Borrando colección de limpiezas');
-  await mongoose.connection.collections['limpiezas'].drop();
-  console.log('Borrando colección de usuarios');
-  await mongoose.connection.collections['usuarios'].drop();
-};
+mongoose.connect('mongodb://hotelDB/hotel');
 
 // Cargar datos de inicio
 const cargarDatos = async () => {
@@ -131,8 +122,6 @@ const cargarDatos = async () => {
 
 // Función principal de ejecución de restauración de BD
 const ejecutarRestauracion = async () => {
-  console.log('Borrando datos...');
-  await borrarDatos();
   console.log('Cargando datos...');
   await cargarDatos();
   mongoose.disconnect();
