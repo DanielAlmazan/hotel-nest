@@ -1,13 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const mongoose = require('mongoose');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const Habitacion = require(__dirname + '/models/habitacion');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const Limpieza = require(__dirname + '/models/limpieza');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const Usuario = require(__dirname + '/models/usuario');
 
-mongoose.connect('mongodb://hotelDB:27017/hotel');
+mongoose.connect('mongodb://hotelDB/hotel');
 
 const borrarDatos = async () => {
   console.log('Borrando colección de habitaciones');
