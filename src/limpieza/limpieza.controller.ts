@@ -26,13 +26,15 @@ export class LimpiezaController {
   }
 
   @Get('limpias')
-  getHabitacionesLimpias() {
-    return this.limpiezaService.getHabitacionesLimpias();
+  async getHabitacionesLimpias() {
+    return {
+      habitaciones: await this.limpiezaService.getHabitacionesLimpias(),
+    };
   }
 
   @Get('sucias')
-  getHabitacionesSucias() {
-    return this.limpiezaService.getHabitacionesSucias();
+  async getHabitacionesSucias() {
+    return { habitaciones: await this.limpiezaService.getHabitacionesSucias() };
   }
 
   @Get(':id')
