@@ -30,6 +30,11 @@ export class LimpiezaController {
     return this.limpiezaService.getHabitacionesLimpias();
   }
 
+  @Get('sucias')
+  getHabitacionesSucias() {
+    return this.limpiezaService.getHabitacionesSucias();
+  }
+
   @Get(':id')
   findAll(@Param('id') id: string) {
     return this.limpiezaService.findAll(id);
