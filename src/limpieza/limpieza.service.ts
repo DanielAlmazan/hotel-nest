@@ -87,4 +87,15 @@ export class LimpiezaService {
     );
     return habitacionesLimpias.filter((habitacion) => habitacion);
   }
+
+  async getHabitacionesSucias() {
+    const habitaciones = await this.habitacionModel.find();
+    const habitacionesSucias = await Promise.all(
+      habitaciones.map(async (habitacion) => {
+        const estado = await this.getEstadoLimpieza(habitacion._id);
+        if (estado.ok == false) return habitacion;
+      }),
+    );
+    return habitacionesSucias.filter((habitacion) => habitacion);
+  }
 }
