@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const apiHost = process.env.API_HOST || 'localhost';
+const apiHost = process.env.API_HOST || 'amorenoiborra.es';
 const apiPort = process.env.API_PORT || 3000;
 
 const axiosInstance = axios.create({
@@ -124,15 +124,15 @@ const getCleanedRooms = async () => {
   // Get cleaned rooms
   try {
     const response = await axiosInstance.get('/limpieza/limpias');
-    if (response.status === expectedValues.status && response.data.length === expectedValues.amount) {
+    if (response.status === expectedValues.status && response.data.habitaciones.length === expectedValues.amount) {
       console.log('OK - Habitaciones limpiadas hoy');
-      return response.data;
+      return response.data.habitaciones;
     } else {
       // Error message
       throw new Error(
         response.status !== expectedValues.status
           ? `Expected status: ${expectedValues.status} - Obtained: ${response.status}`
-          : `Expected cleanings length: >= ${expectedValues.amount} - Obtained: ${response.data.length}`
+          : `Expected cleanings length: >= ${expectedValues.amount} - Obtained: ${response.data.habitaciones.length}`
       );
     }
   } catch (error) {
